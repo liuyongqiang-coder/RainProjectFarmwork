@@ -1,0 +1,261 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SharpMap.Layers.BruTile</name>
+    </assembly>
+    <members>
+        <member name="T:SharpMap.Layers.TileAsyncLayer">
+            <summary>
+            Tile layer class that gets and serves tiles asynchronously
+            </summary>
+        </member>
+        <member name="P:SharpMap.Layers.TileAsyncLayer.OnlyRedrawWhenComplete">
+            <summary>
+            Gets or Sets a value indicating if to redraw the map only when all tiles are downloaded
+            </summary>
+        </member>
+        <member name="P:SharpMap.Layers.TileAsyncLayer.NumPendingDownloads">
+            <summary>
+            Returns the number of tiles that are in queue for download
+            </summary>
+        </member>
+        <member name="E:SharpMap.Layers.TileAsyncLayer.DownloadProgressChanged">
+            <summary>
+            Event raised when tiles are downloaded
+            </summary>
+        </member>
+        <member name="M:SharpMap.Layers.TileAsyncLayer.#ctor(BruTile.ITileSource,System.String)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="tileSource">The tile source</param>
+            <param name="layerName">The layers name</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileAsyncLayer.#ctor(BruTile.ITileSource,System.String,System.Drawing.Color,System.Boolean)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="tileSource">The tile source</param>
+            <param name="layerName">The layers name</param>
+            <param name="transparentColor">The color that should be treated as <see cref="P:System.Drawing.Color.Transparent"/></param>
+            <param name="showErrorInTile">Value indicating that an error tile should be generated for non-existent tiles</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileAsyncLayer.#ctor(BruTile.ITileSource,System.String,System.Drawing.Color,System.Boolean,System.String)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="tileSource">The tile source</param>
+            <param name="layerName">The layers name</param>
+            <param name="transparentColor">The color that should be treated as <see cref="P:System.Drawing.Color.Transparent"/></param>
+            <param name="showErrorInTile">Value indicating that an error tile should be generated for non-existent tiles</param>
+            <param name="fileCacheDir">The directories where tiles should be stored</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileAsyncLayer.#ctor(BruTile.ITileSource,System.String,System.Drawing.Color,System.Boolean,BruTile.Cache.FileCache,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="tileSource">The tile source</param>
+            <param name="layerName">The layers name</param>
+            <param name="transparentColor">The color that should be treated as <see cref="P:System.Drawing.Color.Transparent"/></param>
+            <param name="showErrorInTile">Value indicating that an error tile should be generated for non-existent tiles</param>
+            <param name="fileCache">If the layer should use a file-cache so store tiles, set this to a fileCacheProvider. Set to null to avoid filecache</param>
+            <param name="imgFormat">Set the format of the tiles to be used</param>
+        </member>
+        <member name="E:SharpMap.Layers.TileAsyncLayer.MapNewTileAvaliable">
+            <summary>
+            EventHandler for event fired when a new Tile is available for rendering
+            </summary>
+        </member>
+        <member name="M:SharpMap.Layers.TileAsyncLayer.Cancel">
+            <summary>
+            Method to cancel the async layer
+            </summary>
+        </member>
+        <member name="M:SharpMap.Layers.TileAsyncLayer.Render(System.Drawing.Graphics,SharpMap.MapViewport)">
+            <summary>
+            Renders the layer
+            </summary>
+            <param name="graphics">Graphics object reference</param>
+            <param name="map">Map which is rendered</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileAsyncLayer.GetTileOnThread(System.Threading.CancellationToken,BruTile.ITileProvider,BruTile.TileInfo,BruTile.Cache.ITileCache{System.Drawing.Bitmap},System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="cancelToken"></param>
+            <param name="tileProvider"></param>
+            <param name="tileInfo"></param>
+            <param name="bitmaps"></param>
+            <param name="retry"></param>
+            <returns><c>true</c> if task finished without getting a cancellation signal, otherwise <c>false</c></returns>
+        </member>
+        <member name="T:SharpMap.Layers.TileLayer">
+            <summary>
+             Tile layer class
+            </summary>
+        </member>
+        <member name="F:SharpMap.Layers.TileLayer._source">
+            <summary>
+            The tile source for this layer
+            </summary>
+        </member>
+        <member name="F:SharpMap.Layers.TileLayer._bitmaps">
+            <summary>
+            An in-memory tile cache
+            </summary>
+        </member>
+        <member name="F:SharpMap.Layers.TileLayer._fileCache">
+            <summary>
+            A file cache
+            </summary>
+        </member>
+        <member name="F:SharpMap.Layers.TileLayer._ImageFormat">
+            <summary>
+            The format of the images
+            </summary>
+        </member>
+        <member name="F:SharpMap.Layers.TileLayer._showErrorInTile">
+            <summary>
+            Value indicating if "error" tiles should be generated or not.
+            </summary>
+        </member>
+        <member name="F:SharpMap.Layers.TileLayer._transparentColor">
+            <summary>
+            Color that is treated as a placeholder for transparency
+            </summary>
+        </member>
+        <member name="P:SharpMap.Layers.TileLayer.Envelope">
+            <summary>
+            Gets the boundingbox of the entire layer
+            </summary>
+        </member>
+        <member name="P:SharpMap.Layers.TileLayer.InterpolationMode">
+            <summary>
+            The algorithm used when images are scaled or rotated 
+            </summary>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.#ctor(BruTile.ITileSource,System.String)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="tileSource">the source to get the tiles from</param>
+            <param name="layerName">name of the layer</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.#ctor(BruTile.ITileSource,System.String,System.Drawing.Color,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="tileSource">The source to get the tiles from</param>
+            <param name="layerName">The name of the layer</param>
+            <param name="transparentColor">The color to be treated as transparent color</param>
+            <param name="showErrorInTile">Flag indicating that an error tile should be generated for <see cref="T:System.Net.WebException"/>s</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.#ctor(BruTile.ITileSource,System.String,System.Drawing.Color,System.Boolean,System.String)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="tileSource">the source to get the tiles from</param>
+            <param name="layerName">name of the layer</param>
+            <param name="transparentColor">transparent color off</param>
+            <param name="showErrorInTile">generate an error tile if it could not be retrieved from source</param>
+            <param name="fileCacheDir">If the layer should use a file-cache so store tiles, set this to that directory. Set to null to avoid filecache</param>
+            <remarks>If <paramref name="showErrorInTile"/> is set to false, tile source keeps trying to get the tile in every request</remarks>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.#ctor(BruTile.ITileSource,System.String,System.Drawing.Color,System.Boolean,BruTile.Cache.FileCache,System.Drawing.Imaging.ImageFormat)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="tileSource">the source to get the tiles from</param>
+            <param name="layerName">name of the layer</param>
+            <param name="transparentColor">transparent color off</param>
+            <param name="showErrorInTile">generate an error tile if it could not be retrieved from source</param>
+            <param name="fileCache">If the layer should use a file-cache so store tiles, set this to a fileCacheProvider. Set to null to avoid filecache</param>
+            <param name="imgFormat">Set the format of the tiles to be used</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.Render(System.Drawing.Graphics,SharpMap.MapViewport)">
+            <summary>
+            Renders the layer
+            </summary>
+            <param name="graphics">Graphics object reference</param>
+            <param name="map">Map which is rendered</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.AddImageToFileCache(BruTile.TileInfo,System.Drawing.Bitmap)">
+            <summary>
+            Method to add a tile image to the <see cref="T:BruTile.Cache.FileCache"/>
+            </summary>
+            <param name="tileInfo">The tile info</param>
+            <param name="bitmap">The tile image</param>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.GetImageFromFileCache(BruTile.TileInfo)">
+            <summary>
+            Function to get a tile image from the <see cref="T:BruTile.Cache.FileCache"/>.
+            </summary>
+            <param name="info">The tile info</param>
+            <returns>The tile-image, if already cached</returns>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.OnDeserialization(System.Object)">
+            <inheritdoc cref="M:System.Runtime.Serialization.IDeserializationCallback.OnDeserialization(System.Object)"/>
+        </member>
+        <member name="M:SharpMap.Layers.TileLayer.ReleaseManagedResources">
+            <inheritdoc cref="M:SharpMap.Base.DisposableObject.ReleaseManagedResources"/>
+        </member>
+        <member name="M:SharpMap.Utilities.ResolutionSurrogate.ResolutionRef.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Serialization constructor
+            </summary>
+            <param name="info"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:SharpMap.Utilities.Utility">
+            <summary>
+            Utility class for reflection on BruTile classes
+            </summary>
+        </member>
+        <member name="M:SharpMap.Utilities.Utility.AddBruTileSurrogates(System.Runtime.Serialization.IFormatter)">
+            <summary>
+            Adds required surrogates to <paramref name="formatter"/> to (de-) serialize BruTile objects.
+            </summary>
+            <param name="formatter">A formatter</param>
+        </member>
+        <member name="M:SharpMap.Utilities.Utility.GetList``1(System.Collections.Generic.IList{``0},System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.String)">
+            <summary>
+            Serializes a <see cref="T:System.Collections.Generic.IList`1"/> to <paramref name="info"/>
+            </summary>
+            <typeparam name="T">The type of the items in the list</typeparam>
+            <param name="obj">The list</param>
+            <param name="info">A streaming info</param>
+            <param name="context">A serialization context</param>
+            <param name="baseFieldName">A base field name</param>
+        </member>
+        <member name="M:SharpMap.Utilities.Utility.SetList``1(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.String)">
+            <summary>
+            Deserializes a <see cref="T:System.Collections.Generic.IList`1"/> from <paramref name="info"/>
+            </summary>
+            <typeparam name="T">The type of the items in the list</typeparam>
+            <param name="info">A streaming info</param>
+            <param name="context">A serialization context</param>
+            <param name="baseFieldName">A base field name</param>
+        </member>
+        <member name="M:SharpMap.Utilities.Utility.GetDictionary``2(System.Collections.Generic.IDictionary{``0,``1},System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.String)">
+            <summary>
+            Serializes a <see cref="T:System.Collections.Generic.IDictionary`2"/> to <paramref name="info"/>
+            </summary>
+            <typeparam name="TKey">The type of the key items in the dictionary</typeparam>
+            <typeparam name="TValue">The type of the value items in the dictionary</typeparam>
+            <param name="obj">The list</param>
+            <param name="info">A streaming info</param>
+            <param name="context">A serialization context</param>
+            <param name="baseFieldName">A base field name</param>
+        </member>
+        <member name="M:SharpMap.Utilities.Utility.SetDictionary``2(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.String)">
+            <summary>
+            Deserializes a <see cref="T:System.Collections.Generic.IDictionary`2"/> from <paramref name="info"/>
+            </summary>
+            <typeparam name="TKey">The type of the key items in the dictionary</typeparam>
+            <typeparam name="TValue">The type of the value items in the dictionary</typeparam>
+            <param name="info">A streaming info</param>
+            <param name="context">A serialization context</param>
+            <param name="baseFieldName">A base field name</param>
+        </member>
+    </members>
+</doc>

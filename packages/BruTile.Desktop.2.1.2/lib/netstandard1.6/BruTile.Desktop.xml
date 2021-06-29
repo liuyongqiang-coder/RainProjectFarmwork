@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BruTile.Desktop</name>
+    </assembly>
+    <members>
+        <member name="M:BruTile.Cache.FileCache.#ctor(System.String,System.String,System.TimeSpan)">
+            <remarks>
+              The constructor creates the storage _directory if it does not exist.
+            </remarks>
+        </member>
+        <member name="M:BruTile.Cache.FileCache.#ctor(System.String,System.String)">
+            <remarks>
+            The constructor creates the storage _directory if it does not exist.
+            </remarks>
+        </member>
+    </members>
+</doc>
