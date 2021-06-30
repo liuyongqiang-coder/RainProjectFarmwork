@@ -147,6 +147,7 @@
       <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -157,6 +158,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Chart.Designer.cs">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +173,9 @@
     <Compile Include="pointStruct.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Chart.resx">
+      <DependentUpon>Chart.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -623,6 +633,24 @@
     <Content Include="Forms\Icons\32x32\vector-grass.png" />
     <Content Include="Forms\Icons\32x32\vector.png" />
     <Content Include="Forms\Icons\ReadMe.txt" />
+    <Content Include="Scripts\ECharts\chart\bar.js" />
+    <Content Include="Scripts\ECharts\chart\chord.js" />
+    <Content Include="Scripts\ECharts\chart\eventRiver.js" />
+    <Content Include="Scripts\ECharts\chart\force.js" />
+    <Content Include="Scripts\ECharts\chart\funnel.js" />
+    <Content Include="Scripts\ECharts\chart\gauge.js" />
+    <Content Include="Scripts\ECharts\chart\k.js" />
+    <Content Include="Scripts\ECharts\chart\line.js" />
+    <Content Include="Scripts\ECharts\chart\map.js" />
+    <Content Include="Scripts\ECharts\chart\pie.js" />
+    <Content Include="Scripts\ECharts\chart\radar.js" />
+    <Content Include="Scripts\ECharts\chart\scatter.js" />
+    <Content Include="Scripts\ECharts\chart\tree.js" />
+    <Content Include="Scripts\ECharts\chart\treemap.js" />
+    <Content Include="Scripts\ECharts\chart\venn.js" />
+    <Content Include="Scripts\ECharts\chart\wordCloud.js" />
+    <Content Include="Scripts\ECharts\echarts-all.js" />
+    <Content Include="Scripts\ECharts\echarts.js" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.js"></script>
+	<script src="Scripts/ECharts/echarts-all.js"></script>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 700px;height:500px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+option = {
+    title: {
+        text: '监测水深'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['量测水深']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1','2','3','4','5','6','7','8']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'量测水深',
+            type:'line',
+            stack: '总量',
+            data:[3.96, 0.67, 2.68, 1.72, 2.87, 1.85, 4.11, 2.11]
+        }
+    ]
+};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

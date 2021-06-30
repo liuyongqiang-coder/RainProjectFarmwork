@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mapBox1 = new SharpMap.Forms.MapBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,32 +54,10 @@
             this.hJelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapBox1 = new SharpMap.Forms.MapBox();
+            this.openChart = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // mapBox1
-            // 
-            this.mapBox1.ActiveTool = SharpMap.Forms.MapBox.Tools.None;
-            this.mapBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mapBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.mapBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mapBox1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.mapBox1.CustomTool = null;
-            this.mapBox1.FineZoomFactor = 10D;
-            this.mapBox1.Location = new System.Drawing.Point(118, 41);
-            this.mapBox1.MapQueryMode = SharpMap.Forms.MapBox.MapQueryType.LayerByIndex;
-            this.mapBox1.Name = "mapBox1";
-            this.mapBox1.QueryGrowFactor = 5F;
-            this.mapBox1.QueryLayerIndex = 0;
-            this.mapBox1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.mapBox1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
-            this.mapBox1.ShowProgressUpdate = false;
-            this.mapBox1.Size = new System.Drawing.Size(961, 480);
-            this.mapBox1.TabIndex = 0;
-            this.mapBox1.Text = "mapBox1";
-            this.mapBox1.WheelZoomMagnitude = -2D;
             // 
             // button1
             // 
@@ -164,7 +141,7 @@
             this.openFileToReadNewPointsToolStripMenuItem,
             this.savePointsToAFilesToolStripMenuItem});
             this.pointToolStripMenuItem.Name = "pointToolStripMenuItem";
-            this.pointToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.pointToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.pointToolStripMenuItem.Text = "Point";
             // 
             // addNewPointsToMapToolStripMenuItem
@@ -195,7 +172,7 @@
             this.openAFileAndReadTheLinesToolStripMenuItem,
             this.saveThePolylinesToAFileToolStripMenuItem});
             this.polylineToolStripMenuItem.Name = "polylineToolStripMenuItem";
-            this.polylineToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.polylineToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.polylineToolStripMenuItem.Text = "Polyline";
             // 
             // drawNewLinesToolStripMenuItem
@@ -290,11 +267,46 @@
             this.contactToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.contactToolStripMenuItem.Text = "Contact";
             // 
+            // mapBox1
+            // 
+            this.mapBox1.ActiveTool = SharpMap.Forms.MapBox.Tools.None;
+            this.mapBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mapBox1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.mapBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.mapBox1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.mapBox1.CustomTool = null;
+            this.mapBox1.FineZoomFactor = 10D;
+            this.mapBox1.Location = new System.Drawing.Point(118, 41);
+            this.mapBox1.MapQueryMode = SharpMap.Forms.MapBox.MapQueryType.LayerByIndex;
+            this.mapBox1.Name = "mapBox1";
+            this.mapBox1.QueryGrowFactor = 5F;
+            this.mapBox1.QueryLayerIndex = 0;
+            this.mapBox1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.mapBox1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
+            this.mapBox1.ShowProgressUpdate = false;
+            this.mapBox1.Size = new System.Drawing.Size(961, 480);
+            this.mapBox1.TabIndex = 0;
+            this.mapBox1.Text = "mapBox1";
+            this.mapBox1.WheelZoomMagnitude = -2D;
+            // 
+            // openChart
+            // 
+            this.openChart.Location = new System.Drawing.Point(12, 163);
+            this.openChart.Name = "openChart";
+            this.openChart.Size = new System.Drawing.Size(75, 23);
+            this.openChart.TabIndex = 9;
+            this.openChart.Text = "打开图标";
+            this.openChart.UseVisualStyleBackColor = true;
+            this.openChart.Click += new System.EventHandler(this.openChart_Click);
+            // 
             // mainFrom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1080, 519);
+            this.Controls.Add(this.openChart);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
@@ -339,6 +351,7 @@
         private System.Windows.Forms.ToolStripMenuItem hJelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contactToolStripMenuItem;
+        private System.Windows.Forms.Button openChart;
     }
 }
 

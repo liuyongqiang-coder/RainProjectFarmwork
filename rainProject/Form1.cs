@@ -17,6 +17,7 @@ using NetTopologySuite.Geometries;
 using System.Collections.ObjectModel;
 using System.Collections;
 using System.Text.RegularExpressions;
+using rainProject;
 
 namespace rainControlDevelop
 {
@@ -376,6 +377,12 @@ namespace rainControlDevelop
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
+        }
+
+        private void openChart_Click(object sender, EventArgs e)
+        {
+            Chart ope = new Chart();
+            ope.ShowDialog();
         }
     }
 }
