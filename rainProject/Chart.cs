@@ -7,69 +7,120 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms; 
+using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Windows.Forms.DataVisualization.Charting;
+
+struct Date
+{
+    public int year;
+    public int month;
+    public int day;
+    public int hour;
+    public int minutes;
+    public int seconds;
+}
+
+struct MeasureDate
+{
+    public Date date;
+    public double levels;
+}
 
 namespace rainProject
 {
-    [System.Runtime.InteropServices.ComVisible(true)]
     public partial class Chart : Form
     {
+        //名称
+        string tileName = null;
+        List<MeasureDate> measureDateList = new List<MeasureDate>();
+        List<Cardata> CCardata = new List<Cardata>();
+
         public Chart()
         {
             InitializeComponent();
-
-            //初始化浏览器
-            this.initWebBrowser();
-
-            //加载 文件
-            //this.getAllHtmlFile();
         }
 
         private void Chart_Load(object sender, EventArgs e)
         {
-            this.webBrowser1.Url = new Uri("G:\\WPF\\rain_control\\RainProjectFarmwork\\rainProject\\index6.html");
+           
         }
 
-        /// <summary>
-        /// 初始化浏览器
-        /// </summary>
-        private void initWebBrowser()
+        private void OpenFile_Click(object sender, EventArgs e)
         {
-            //防止 WebBrowser 控件打开拖放到其上的文件。
-            webBrowser1.AllowWebBrowserDrop = false;
+            Stream myStream = null;
+            OpenFileDialog theDialog = new OpenFileDialog();
+            theDialog.Title = "Open tek File";
+            theDialog.Filter = "tek files|*.tek";
+            theDialog.InitialDirectory = @"C:\";
+            if (theDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = theDialog.OpenFile()) != null)
+                    {
 
-            //防止 WebBrowser 控件在用户右击它时显示其快捷菜单.
-            webBrowser1.IsWebBrowserContextMenuEnabled = false;
+                        using (myStream)
+                        {
+                            //string name = null;
+                            //先读取名称Zhapo_utc_2016_min
+                            StreamReader sr = new StreamReader(theDialog.FileName, Encoding.Default);
+                            string name = sr.ReadToEnd();
+                            string[] arrayStr = Regex.Split(name, "\r\n");
+                            tileName = arrayStr[3];//标题数据进行读取完成
+                                                   //进行时间+水位的读取
+                            int size = Convert.ToInt32(arrayStr[4].Split(' ')[0]);
 
-            //以防止 WebBrowser 控件响应快捷键。
-            webBrowser1.WebBrowserShortcutsEnabled = false;
 
-            //以防止 WebBrowser 控件显示脚本代码问题的错误信息。    
-            webBrowser1.ScriptErrorsSuppressed = true;
+                            MeasureDate measureDate;
+                            for (int i = 5; i < size + 5; i++)
+                            {
+                                Cardata cardate = new Cardata();
+                                cardate.date = arrayStr[i].Split(' ')[0] + arrayStr[i].Split(' ')[1];
+                                cardate.level = Convert.ToDouble(arrayStr[i].Split(' ')[2]);
+                                CCardata.Add(cardate);
+                                measureDate.date.year = Convert.ToInt32(arrayStr[i].Split(' ')[0]) / 10000;
+                                measureDate.date.month = (Convert.ToInt32(arrayStr[i].Split(' ')[0]) - measureDate.date.year * 10000) / 100;
+                                measureDate.date.day = Convert.ToInt32(arrayStr[i].Split(' ')[0]) - measureDate.date.year * 10000 - measureDate.date.month * 100;
+                                measureDate.date.hour = Convert.ToInt32(arrayStr[i].Split(' ')[1]) / 10000;
+                                measureDate.date.minutes = (Convert.ToInt32(arrayStr[i].Split(' ')[1]) - measureDate.date.hour * 10000) / 100;
+                                measureDate.date.seconds = Convert.ToInt32(arrayStr[i].Split(' ')[1]) - measureDate.date.hour * 10000 - measureDate.date.minutes * 100;
+                                measureDate.levels = Convert.ToDouble(arrayStr[i].Split(' ')[2]);
+                                measureDateList.Add(measureDate);
+                            }
+                        }
 
-            //（这个属性比较重要，可以通过这个属性，把WINFROM中的变量，传递到JS中，供内嵌的网页使用；但设置到的类型必须是COM可见的，所以要设置     [System.Runtime.InteropServices.ComVisibleAttribute(true)]，因为我的值设置为this,所以这个特性要加载窗体类上）
-            webBrowser1.ObjectForScripting = this;
+                        this.chart1.Series[0].ChartType = SeriesChartType.Spline;
+
+                        foreach (var item in measureDateList)
+                        {
+                            this.chart1.Series[0].Points.AddXY((item.date.day).ToString() + "日" + (item.date.hour).ToString() + "时", item.levels);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
         }
+    }
 
-        //private void getAllHtmlFile()
-        //{
-        //    //获取指定文件夹的所有文件  
-        //    string[] paths = Directory.GetFiles(str);
-        //    foreach (var item in paths)
-        //    {
-        //        //获取文件后缀名  
-        //        string extension = Path.GetExtension(item).ToLower();
-        //        if (extension == ".html")
-        //        {
-        //            comboBox1.Items.Add(Path.GetFileName(item));
-        //        }
-        //    }
+    class Cardata
+    {
+        private string _date;
 
-        //    if (comboBox1.Items.Count > 0)
-        //    {
-        //        comboBox1.SelectedIndex = 0;
-        //        this.webBrowser1.Url = new Uri(str + "\\" + comboBox1.Text.Trim());
-        //    }
-        //}
+        public string date
+        {
+            get { return _date; }
+            set { _date = value; }
+        }
+        private double _level;
+
+        public double level
+        {
+            get { return _level; }
+            set { _level = value; }
+        }
     }
 }

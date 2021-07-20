@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +55,7 @@
             this.contactToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapBox1 = new SharpMap.Forms.MapBox();
             this.openChart = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,15 +68,6 @@
             this.button1.Text = "刷新";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Refresh_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 106);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 15);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "label1";
             // 
             // label2
             // 
@@ -114,14 +105,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(124, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -278,7 +269,7 @@
             this.mapBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.mapBox1.CustomTool = null;
             this.mapBox1.FineZoomFactor = 10D;
-            this.mapBox1.Location = new System.Drawing.Point(118, 41);
+            this.mapBox1.Location = new System.Drawing.Point(123, 41);
             this.mapBox1.MapQueryMode = SharpMap.Forms.MapBox.MapQueryType.LayerByIndex;
             this.mapBox1.Name = "mapBox1";
             this.mapBox1.QueryGrowFactor = 5F;
@@ -286,20 +277,29 @@
             this.mapBox1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.mapBox1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(244)))), ((int)(((byte)(244)))));
             this.mapBox1.ShowProgressUpdate = false;
-            this.mapBox1.Size = new System.Drawing.Size(961, 480);
+            this.mapBox1.Size = new System.Drawing.Size(956, 480);
             this.mapBox1.TabIndex = 0;
             this.mapBox1.Text = "mapBox1";
             this.mapBox1.WheelZoomMagnitude = -2D;
             // 
             // openChart
             // 
-            this.openChart.Location = new System.Drawing.Point(12, 163);
+            this.openChart.Location = new System.Drawing.Point(12, 154);
             this.openChart.Name = "openChart";
             this.openChart.Size = new System.Drawing.Size(75, 23);
             this.openChart.TabIndex = 9;
             this.openChart.Text = "打开图标";
             this.openChart.UseVisualStyleBackColor = true;
             this.openChart.Click += new System.EventHandler(this.openChart_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 15);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "label1";
             // 
             // mainFrom
             // 
@@ -326,7 +326,6 @@
 
         private SharpMap.Forms.MapBox mapBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
@@ -352,6 +351,7 @@
         private System.Windows.Forms.ToolStripMenuItem manualToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contactToolStripMenuItem;
         private System.Windows.Forms.Button openChart;
+        private System.Windows.Forms.Label label1;
     }
 }
 

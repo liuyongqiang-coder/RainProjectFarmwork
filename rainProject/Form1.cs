@@ -43,7 +43,7 @@ namespace rainControlDevelop
         private void AddOSMTile()
         {
              osmLayer = new TileAsyncLayer(KnownTileSources.Create(KnownTileSource.OpenStreetMap,
-                null, null, null, "SharpMap-WMSLayer"), "TileLayer - OSM");
+                null, null, null, "SharpMap-WMSLayer"), "TileLayer-OSM");
             this.mapBox1.Map.BackgroundLayer.Clear();
             this.mapBox1.Map.BackgroundLayer.Add(osmLayer);
             mapBox1.Map.ZoomToExtents();
@@ -58,9 +58,8 @@ namespace rainControlDevelop
         /// <param name="e"></param>
         private void Refresh_Click(object sender, EventArgs e)
         {
-            AddLineFromTXT("line");
-            //this.mapBox1.Refresh();
-           // mapBox1.ActiveTool = SharpMap.Forms.MapBox.Tools.Pan;
+            this.mapBox1.Refresh();
+            mapBox1.ActiveTool = SharpMap.Forms.MapBox.Tools.Pan;
         }
 
         /// <summary>
